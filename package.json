@@ -1,0 +1,26 @@
+{
+  "name": "buntralino",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "type": "module",
+  "keywords": [
+    "buntralino",
+    "electron",
+    "nwjs",
+    "nw.js",
+    "xpda",
+    "neutralino",
+    "bun",
+    "server"
+  ],
+  "author": "Cosmo Myzrail Gorynych",
+  "license": "MIT",
+  "description": "Bun library for Buntralino. Buntralino unites Bun and Neutralino.js to make a simpler, lighter alternative to Electron and NW.js. Use Neutralino.js API at client and send harder tasks to Bun while keeping your development process easy.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@neutralinojs/lib": "^5.5.0",
+    "@types/bun": "^1.1.14"
+  }
+}
