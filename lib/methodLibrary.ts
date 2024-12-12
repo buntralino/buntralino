@@ -1,4 +1,4 @@
-type methodCall = (payload: unknown) => unknown;
+type methodCall = (payload: any) => any;
 const methodsMap = new Map<string, methodCall>();
 
 export const registerMethod = (name: string, method: methodCall) => {
