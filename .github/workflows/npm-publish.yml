@@ -6,7 +6,7 @@ name: Npm Package
 on:
   push:
     branches:
-      - master # Change this to your default branch
+      - main
 
 jobs:
   publish-npm:
