@@ -1,14 +1,14 @@
 import type {WindowOptions as NeutralinoWindowOptions} from '@neutralinojs/lib';
 import EventEmitter from 'events';
 
-import logger from './logger';
-import {spawnNeutralino} from './spawnNeutralino';
-import * as neuWindow from './window';
-import {getUid} from './utils';
-import type {Connection} from './connections';
+import logger from './lib/logger';
+import {spawnNeutralino} from './lib/spawnNeutralino';
+import * as neuWindow from './lib/window';
+import {getUid} from './lib/utils';
+import type {Connection} from './lib/connections';
 // eslint-disable-next-line no-duplicate-imports
-import {dropConnection, registerConnection, getConnectionByToken, awaitConnection} from './connections';
-import fulfillRequests from './requests';
+import {dropConnection, registerConnection, getConnectionByToken, awaitConnection} from './lib/connections';
+import fulfillRequests from './lib/requests';
 
 
 export const events = new EventEmitter();
@@ -17,9 +17,9 @@ export const events = new EventEmitter();
 export {
     registerMethod,
     registerMethodMap
-} from './methodLibrary';
-export * from './window';
-export {isConnectionOpen} from './connections';
+} from './lib/methodLibrary';
+export * from './lib/window';
+export {isConnectionOpen} from './lib/connections';
 
 interface WindowOptions extends NeutralinoWindowOptions {
     name?: string;

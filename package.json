@@ -2,6 +2,12 @@
   "name": "buntralino",
   "version": "1.0.0",
   "main": "index.ts",
+  "files": [
+    "index.ts",
+    "Readme.md",
+    "LICENSE",
+    "lib"
+  ],
   "type": "module",
   "keywords": [
     "buntralino",
