@@ -21,7 +21,7 @@ export {
 export * from './lib/window';
 export {isConnectionOpen} from './lib/connections';
 
-interface WindowOptions extends NeutralinoWindowOptions {
+interface WindowOptions extends Partial<NeutralinoWindowOptions> {
     name?: string;
 }
 
