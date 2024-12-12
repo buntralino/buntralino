@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import {color} from 'bun' with {type: 'macro'};
+import {color} from 'bun';
 
 /**
  * Logs a given string, formatting the template tags with appropriate colors
