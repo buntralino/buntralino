@@ -22,6 +22,7 @@ const functionMap = {
         message: string
     }) => {
         await Bun.sleep(1000);
+        return `Bun says "${payload.message}"!`;
     }
 };
 
