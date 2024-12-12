@@ -19,11 +19,7 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org/
       - run: bun install
-      - name: tagging and publishing to npm
-        uses: oeway/npm-publish-action@1.1.3
-        with: # All of theses inputs are optional
-          publish_with: "npm"
-          commit_pattern: "^(:bookmark:|🔖)"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: NPM Publish
+        uses: JS-DevTools/npm-publish@v3.1.1
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
