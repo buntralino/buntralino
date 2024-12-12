@@ -4,8 +4,9 @@
 name: Npm Package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master # Change this to your default branch
 
 jobs:
   publish-npm:
