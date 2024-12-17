@@ -10,9 +10,7 @@ import type {Connection} from './lib/connections';
 import {dropConnection, registerConnection, getConnectionByToken, awaitConnection} from './lib/connections';
 import fulfillRequests from './lib/requests';
 
-
 export const events = new EventEmitter();
-
 
 export {
     registerMethod,
