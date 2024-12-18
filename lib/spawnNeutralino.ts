@@ -1,5 +1,5 @@
 import logger from './logger';
-import {join} from 'path';
+import {dirname, join} from 'path';
 
 const neutralinoBinaries = [{
     platform: 'linux',
@@ -37,10 +37,17 @@ export const spawnNeutralino = async (args: string[]) => {
     }
     if (process.platform === 'darwin') {
         // Search for Neutralino in a bundled apps' Resources folder
-        bundledPath = join(process.cwd(), 'Contents/Resources/neutralino');
+        bundledPath = join(process.execPath, '../../Resources/neutralino');
         bundled = Bun.file(bundledPath);
         if (await bundled.exists()) {
-            return Bun.spawn([bundledPath, '--path=../Contents/Resources', ...args], config);
+            const neutralinoPath = dirname(bundledPath);
+            // Will be the directory with the MyApp.app folder
+            const cwd = join(process.execPath, '../../..');
+
+            return Bun.spawn([bundledPath, '--path=' + neutralinoPath, ...args], {
+                ...config,
+                cwd
+            });
         }
     }
     const match = neutralinoBinaries.find(binary =>
