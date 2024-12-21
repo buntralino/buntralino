@@ -1,5 +1,7 @@
-import type {WindowOptions as NeutralinoWindowOptions} from '@neutralinojs/lib';
 import EventEmitter from 'events';
+import {$} from 'bun';
+
+import type {WindowOptions as NeutralinoWindowOptions} from '@neutralinojs/lib';
 
 import logger from './lib/logger';
 import {spawnNeutralino} from './lib/spawnNeutralino';
@@ -126,11 +128,27 @@ export const create = async (url: string, options = {} as WindowOptions): Promis
         `--url=${url}`,
         ...args
     ]);
+    const timeOpened = new Date();
     events.emit('open', name);
-    proc.exited.then(() => {
+    proc.exited.then(async () => {
         logger`Neutralino window ${name} exited with code ${proc.exitCode} 🪦`;
         dropConnection(name);
         events.emit('close', name);
+        if (proc.exitCode !== 0) {
+            const now = new Date();
+            const errorText = await new Response(proc.stderr).text();
+            console.log('Error message:');
+            console.error(errorText);
+            if (process.platform === 'linux' && now.getTime() - timeOpened.getTime() < 3_000) {
+                // Assume that the window just crashed; open a page with troubleshooting instructions.
+                console.log('To troubleshoot problems with opening Neutralino on Linux, please visit https://buntralino.github.io/troubleshoot-linux.html and follow the instructions.');
+                try {
+                    $`xdg-open https://buntralino.github.io/troubleshoot-linux.html`.quiet();
+                } catch (error) {
+                    void error;
+                }
+            }
+        }
     });
 
     await awaitConnection(name);
