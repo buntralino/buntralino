@@ -94,6 +94,12 @@ const normalizeArgument = (arg: unknown) => {
     return str;
 };
 
+/**
+ * Create a new Neutralino window.
+ * @param {string} url The URL to open in the window.
+ * @param {WindowOptions} options The options for the window. They're the same options as in `Neutralino.window.create` method plus the `name` option.
+ * @returns {Promise<string>} A promise that resolves with the name of the created window.
+ */
 export const create = async (url: string, options = {} as WindowOptions): Promise<string> => {
     const id = String(Math.random()
         .toString(36)
