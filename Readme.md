@@ -1,4 +1,4 @@
-![Buntralino logo](./Buntralino@smoll.png)
+![Buntralino logo](https://buntralino.github.io/Buntralino.png)
 
 # Buntralino library for the Bun side
 
