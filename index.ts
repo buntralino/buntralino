@@ -29,6 +29,7 @@ const awaitedNames = new Set<string>();
 
 // This websocket server is used by Neutralino to run commands in Bun.
 const receiver = Bun.serve({
+    port: 0, // random port
     fetch(req, server) {
         // upgrade the request to a WebSocket
         if (server.upgrade(req)) {
