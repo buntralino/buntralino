@@ -3,7 +3,7 @@ import type {WindowPosOptions, WindowSizeOptions} from '@neutralinojs/lib';
 import {getUid} from './utils';
 import type {Connection} from './connections';
 // eslint-disable-next-line no-duplicate-imports
-import {getConnectionByName, dropConnection, awaitConnection} from './connections';
+import {getConnectionByName, dropConnection, awaitConnection, connections} from './connections';
 import {evalsMap, type PromiseRejectCallback, type PromiseResolveCallback} from './evals';
 
 const ensureConnection = (target: Connection | string): Connection => {
@@ -59,6 +59,10 @@ export const sendEvent = (connection: Connection | string, event: string, payloa
         data: payload
     });
 };
+
+export const broadcast = (event: string, payload?: unknown) => {
+    connections.values().forEach(connection => sendEvent(connection, event, payload));
+}
 
 export const exit = (target: Connection | string) => sendNeuMethod(ensureConnection(target), 'app.exit', {});
 export const close = exit;
